@@ -10,9 +10,8 @@ import { Logo } from "@/components/Logo";
 type Mode = "signin" | "signup";
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>): { mode?: Mode } => ({
-    mode: s.mode === "signup" ? "signup" : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { mode?: Mode } =>
+    s["mode"] === "signup" ? { mode: "signup" } : {},
   head: () => ({
     meta: [
       { title: "Sign in — Video Speed Reader" },
@@ -48,7 +47,10 @@ function AuthPage() {
         ? await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin + "/app" } })
         : await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     const { data } = await supabase.auth.getSession();
     if (data.session) navigate({ to: "/app", replace: true });
     else toast.success("Check your email to confirm your account.");
