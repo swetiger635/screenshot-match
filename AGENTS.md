@@ -8,3 +8,9 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Component files in src/components use PascalCase.tsx (course convention); hooks/utils use camelCase.
+- Signed-in pages live under src/routes/_authenticated/ (client-only gate redirecting to /auth).
+- Only auth.users is used for now; add tables via migrations only, and use RPC functions for cross-table reads.
+- Never commit real emails or other PII in code or test data.
