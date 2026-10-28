@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <!-- far range catches the sunset (alpenglow) at the top and fades to cool blue -->
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4cdb8"/>
+      <stop offset="0.45" stop-color="#e3dbe6"/>
+      <stop offset="1" stop-color="#d6e2f1"/>
+    </linearGradient>
+    <linearGradient id="snowLit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7f1"/>
+      <stop offset="0.6" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef3fa"/>
+    </linearGradient>
+    <linearGradient id="snowShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9cbe5"/>
+      <stop offset="1" stop-color="#d3e0f0"/>
+    </linearGradient>
+    <linearGradient id="slope" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f4f8fc"/>
+    </linearGradient>
+    <symbol id="pine" viewBox="0 0 40 100">
+      <rect x="17.5" y="84" width="5" height="16" fill="#3a4250"/>
+      <polygon points="20,0 33,30 7,30" fill="#24493f"/>
+      <polygon points="20,16 37,56 3,56" fill="#24493f"/>
+      <polygon points="20,38 40,88 0,88" fill="#1d3d35"/>
+      <polygon points="20,38 40,88 26,88" fill="#2f5e52"/>
+      <polygon points="20,16 37,56 25,56" fill="#2f5e52"/>
+      <polygon points="20,0 26,13 15,11" fill="#ffffff"/>
+      <polygon points="12,28 22,24 30,30 20,32" fill="#f4f8fc"/>
+      <polygon points="6,52 18,46 32,54 18,58" fill="#f4f8fc"/>
+      <polygon points="2,84 16,78 34,84 18,89" fill="#eaf1f9"/>
+    </symbol>
+  </defs>
+
+  <!-- distant range -->
+  <path fill="url(#far)" d="M0 300 L95 232 L160 258 L250 176 L330 236 L420 196 L500 250 L585 205 L700 122 L790 210 L880 180 L975 246 L1075 190 L1170 150 L1255 214 L1345 186 L1440 236 L1440 420 L0 420 Z"/>
+
+  <!-- left snow tower with blue-shadowed face and a bit of rock -->
+  <path fill="url(#snowLit)" d="M150 420 L230 280 C 250 240 262 210 285 186 C 300 172 320 170 336 184 C 352 200 360 230 378 262 L470 420 Z"/>
+  <path fill="url(#snowShade)" d="M336 184 C 352 200 360 230 378 262 L470 420 L340 420 C 352 360 350 300 330 250 C 322 226 326 202 336 184 Z"/>
+
+  <!-- right snow towers -->
+  <path fill="url(#snowLit)" d="M960 420 L1040 300 C 1062 262 1084 222 1110 200 C 1128 186 1150 188 1166 206 C 1186 230 1196 262 1220 296 L1310 420 Z"/>
+  <path fill="url(#snowShade)" d="M1166 206 C 1186 230 1196 262 1220 296 L1310 420 L1180 420 C 1192 360 1186 300 1168 262 C 1158 240 1158 222 1166 206 Z"/>
+  <path fill="url(#snowLit)" d="M1210 420 L1270 330 C 1286 304 1300 286 1318 280 C 1334 276 1346 290 1356 308 L1420 420 Z"/>
+  <path fill="url(#snowShade)" d="M1318 280 C 1334 276 1346 290 1356 308 L1420 420 L1340 420 C 1346 380 1338 330 1318 280 Z"/>
+
+  <!-- rolling snowfield with a soft blue shadow edge -->
+  <path fill="#dbe6f3" d="M0 352 C 160 318 300 330 450 346 C 600 362 760 322 920 330 C 1080 338 1240 318 1440 334 L1440 420 L0 420 Z"/>
+  <path fill="url(#slope)" d="M0 366 C 170 336 320 346 470 360 C 620 374 780 340 940 346 C 1100 352 1260 336 1440 350 L1440 420 L0 420 Z"/>
+
+  <!-- ski tracks -->
+  <path fill="none" stroke="#c6d6ea" stroke-width="2" stroke-linecap="round" d="M690 352 C 740 372 700 392 760 410"/>
+  <path fill="none" stroke="#c6d6ea" stroke-width="2" stroke-linecap="round" d="M705 350 C 760 368 720 392 786 412"/>
+
+  <!-- pines, left -->
+  <use href="#pine" xlink:href="#pine" x="18" y="230" width="58" height="146"/>
+  <use href="#pine" xlink:href="#pine" x="72" y="270" width="44" height="110"/>
+  <use href="#pine" xlink:href="#pine" x="112" y="300" width="30" height="76"/>
+  <use href="#pine" xlink:href="#pine" x="500" y="318" width="22" height="54"/>
+  <use href="#pine" xlink:href="#pine" x="520" y="326" width="16" height="42"/>
+  <!-- pines, right -->
+  <use href="#pine" xlink:href="#pine" x="880" y="306" width="26" height="64"/>
+  <use href="#pine" xlink:href="#pine" x="902" y="316" width="18" height="46"/>
+  <use href="#pine" xlink:href="#pine" x="1342" y="262" width="52" height="128"/>
+  <use href="#pine" xlink:href="#pine" x="1390" y="292" width="36" height="92"/>
+</svg>
