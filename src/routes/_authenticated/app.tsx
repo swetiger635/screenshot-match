@@ -1,33 +1,22 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router";
 import { LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
+import { useDocumentTitle } from "@/hooks/use-document-title";
+import { queryClient } from "../__root";
+import { useAuthenticatedUser } from "./route";
 
-export const Route = createFileRoute("/_authenticated/app")({
-  head: () => ({
-    meta: [
-      { title: "Dashboard — Video Speed Reader" },
-      { name: "description", content: "Your Video Speed Reader dashboard." },
-      { property: "og:title", content: "Dashboard — Video Speed Reader" },
-      { property: "og:description", content: "Your Video Speed Reader dashboard." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
-  component: AppPage,
-});
-
-function AppPage() {
-  const { user } = Route.useRouteContext();
+export function AppPage() {
+  useDocumentTitle("Dashboard — Video Speed Reader", "Your Video Speed Reader dashboard.");
+  const user = useAuthenticatedUser();
   const navigate = useNavigate();
-  const { queryClient } = Route.useRouteContext();
 
   async function signOut() {
     await queryClient.cancelQueries();
     queryClient.clear();
     await supabase.auth.signOut();
-    navigate({ to: "/auth", replace: true });
+    navigate("/sign-in", { replace: true });
   }
 
   return (

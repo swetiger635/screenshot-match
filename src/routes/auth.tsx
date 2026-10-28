@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,36 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/Logo";
+import { useDocumentTitle } from "@/hooks/use-document-title";
 
 type Mode = "signin" | "signup";
 
-export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>): { mode?: Mode } =>
-    s["mode"] === "signup" ? { mode: "signup" } : {},
-  head: () => ({
-    meta: [
-      { title: "Sign in — Video Speed Reader" },
-      { name: "description", content: "Sign in or create your Video Speed Reader account." },
-      { property: "og:title", content: "Sign in — Video Speed Reader" },
-      { property: "og:description", content: "Sign in or create your Video Speed Reader account." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
-  component: AuthPage,
-});
-
-function AuthPage() {
-  const search = Route.useSearch();
+export function AuthPage({ mode }: { mode: Mode }) {
+  useDocumentTitle("Sign in — Video Speed Reader", "Sign in or create your Video Speed Reader account.");
   const navigate = useNavigate();
-  const [mode, setMode] = useState<Mode>(search.mode ?? "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/app", replace: true });
+      if (data.session) navigate("/app", { replace: true });
     });
   }, [navigate]);
 
@@ -52,7 +36,7 @@ function AuthPage() {
       return;
     }
     const { data } = await supabase.auth.getSession();
-    if (data.session) navigate({ to: "/app", replace: true });
+    if (data.session) navigate("/app", { replace: true });
     else toast.success("Check your email to confirm your account.");
   }
 
@@ -80,7 +64,7 @@ function AuthPage() {
         </form>
         <p className="mt-6 text-center text-sm text-muted-foreground">
           {isUp ? "Already have an account? " : "No account yet? "}
-          <button type="button" className="text-primary-glow hover:underline" onClick={() => setMode(isUp ? "signin" : "signup")}>
+          <button type="button" className="text-primary-glow hover:underline" onClick={() => navigate(isUp ? "/sign-in" : "/sign-up", { replace: true })}>
             {isUp ? "Sign in" : "Sign up"}
           </button>
         </p>

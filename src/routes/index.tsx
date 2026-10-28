@@ -1,22 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { AudioLines, Timer, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
+import { useDocumentTitle } from "@/hooks/use-document-title";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Video Speed Reader — 影片三分鐘轉逐字稿" },
-      { name: "description", content: "Upload your video, get a clean transcript in three minutes. 上傳影片，三分鐘內拿到逐字稿。" },
-      { property: "og:title", content: "Video Speed Reader" },
-      { property: "og:description", content: "Upload your video, get a clean transcript in three minutes." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
 
 const features = [
   { icon: AudioLines, title: "高準確度逐字稿", en: "High-accuracy transcripts", body: "Powered by OpenAI Whisper. Supports Chinese and English." },
@@ -24,14 +12,18 @@ const features = [
   { icon: BadgeCheck, title: "可商用授權", en: "Commercial-use ready", body: "You own the output. Use it however you like." },
 ];
 
-function Index() {
+export function Index() {
+  useDocumentTitle(
+    "Video Speed Reader — 影片三分鐘轉逐字稿",
+    "Upload your video, get a clean transcript in three minutes. 上傳影片，三分鐘內拿到逐字稿。",
+  );
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-10 border-b bg-background/70 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Logo />
           <Button asChild variant="hero" size="sm">
-            <Link to="/auth">Sign in / 登入</Link>
+            <Link to="/sign-in">Sign in / 登入</Link>
           </Button>
         </div>
       </header>
@@ -48,7 +40,7 @@ function Index() {
               <p className="mt-3 text-muted-foreground">Upload your video, get a clean transcript in three minutes.</p>
               <div className="mt-10">
                 <Button asChild variant="hero" size="lg">
-                  <Link to="/auth" search={{ mode: "signup" }}>Get started</Link>
+                  <Link to="/sign-up">Get started</Link>
                 </Button>
               </div>
             </Reveal>
