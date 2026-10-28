@@ -1,3 +1,4 @@
+// Generated from Supabase project mzyqackidrdyhyheezfn (supabase gen types typescript).
 export type Json =
   | string
   | number

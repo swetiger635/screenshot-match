@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
-import { reportLovableError } from "../lib/lovable-error-reporting";
-
 export const queryClient = new QueryClient();
 
 export function NotFoundComponent() {
@@ -32,9 +30,8 @@ export function NotFoundComponent() {
 
 export function ErrorComponent() {
   const error = useRouteError();
-  console.error(error);
   useEffect(() => {
-    reportLovableError(error, { boundary: "root_error_component" });
+    console.error(error);
   }, [error]);
 
   return (
